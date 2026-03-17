@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* ─── Pixel Font ─────────────────────────────────────────── */
+
+.pixel-font {
+  font-family: 'Press Start 2P', monospace;
+  letter-spacing: 0.05em;
+}
+
+/* ─── Dungeon Background ─────────────────────────────────── */
+
+.dungeon-bg {
+  background-color: #09090f;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    radial-gradient(ellipse at 25% 35%, rgba(80, 30, 120, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 65%, rgba(20, 50, 100, 0.15) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 90%, rgba(140, 60, 0, 0.08) 0%, transparent 40%);
+  background-size: 32px 32px, 32px 32px, 100% 100%, 100% 100%, 100% 100%;
+}
+
+/* ─── CRT Scanlines ──────────────────────────────────────── */
+
+.scanlines::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.07) 3px,
+    rgba(0, 0, 0, 0.07) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ─── Vignette ───────────────────────────────────────────── */
+
+.vignette::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.55) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ─── Text Glow ──────────────────────────────────────────── */
+
+.text-glow-gold {
+  text-shadow: 0 0 8px #ffd700, 0 0 18px #ffaa00, 0 0 36px #ff8800;
+}
+
+.text-glow-red {
+  text-shadow: 0 0 8px #ff4444, 0 0 18px #cc0000;
+}
+
+/* ─── Pixel Divider ──────────────────────────────────────── */
+
+.pixel-divider {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #5a3e00 10%,
+    #c8860a 30%,
+    #ffd700 50%,
+    #c8860a 70%,
+    #5a3e00 90%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+/* ─── Dungeon Panel ──────────────────────────────────────── */
+
+.dungeon-panel {
+  background: linear-gradient(160deg, #10111e 0%, #181928 60%, #0e0f1a 100%);
+  border: 2px solid #3a2e0e;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 200, 60, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 8px 32px rgba(0, 0, 0, 0.8),
+    0 0 60px rgba(160, 100, 0, 0.04);
+}
+
+/* ─── Chest Card ─────────────────────────────────────────── */
+
+.chest-card {
+  background: linear-gradient(170deg, #0d0e1c 0%, #14152a 100%);
+  border: 2px solid #28210a;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 180, 50, 0.06),
+    0 10px 40px rgba(0, 0, 0, 0.7);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.chest-card-hover:hover {
+  border-color: #6a5018;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 180, 50, 0.12),
+    0 16px 48px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(200, 130, 0, 0.18);
+}
+
+/* ─── Torch ──────────────────────────────────────────────── */
+
+@keyframes torch-flicker {
+  0%,  100% { text-shadow: 0 0 10px #ff6b00, 0 0 22px #ff4500, 0 0 45px #ff2000; transform: scaleY(1)    scaleX(1)    rotate(-1deg); }
+  15%        { text-shadow: 0 0  6px #ff8000, 0 0 12px #ff4000;                   transform: scaleY(0.94) scaleX(1.03) rotate(1deg);  }
+  30%        { text-shadow: 0 0 15px #ff6000, 0 0 30px #ff3000, 0 0 55px #ff1500; transform: scaleY(1.06) scaleX(0.97) rotate(-2deg); }
+  50%        { text-shadow: 0 0  8px #ff7000, 0 0 16px #ff5000;                   transform: scaleY(0.97) scaleX(1.02) rotate(0deg);  }
+  70%        { text-shadow: 0 0 12px #ff6500, 0 0 26px #ff3500;                   transform: scaleY(1.03) scaleX(0.98) rotate(1deg);  }
+  85%        { text-shadow: 0 0  7px #ff5500, 0 0 14px #ff3000;                   transform: scaleY(0.96) scaleX(1.01) rotate(-1deg); }
+}
+
+.torch {
+  font-size: 2rem;
+  display: inline-block;
+  animation: torch-flicker 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(255, 100, 0, 0.6));
+}
+
+.torch-left  { animation-delay: 0s; }
+.torch-right { animation-delay: 0.9s; }
+
+/* ─── Dust Particles ─────────────────────────────────────── */
+
+@keyframes dust-float {
+  0%   { transform: translateY(100vh) translateX(0px);   opacity: 0; }
+  5%   { opacity: 0.55; }
+  45%  { transform: translateY(55vh)  translateX(18px);  opacity: 0.35; }
+  90%  { opacity: 0.4; }
+  100% { transform: translateY(-8vh)  translateX(-12px); opacity: 0; }
+}
+
+.dust {
+  position: fixed;
+  background: rgba(255, 195, 80, 0.55);
+  pointer-events: none;
+  animation: dust-float linear infinite;
+  z-index: 1;
+}
+
+/* ─── Score Badge ────────────────────────────────────────── */
+
+.score-badge {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  border: 1px solid;
+  letter-spacing: 0.08em;
+}
+
+.badge-win     { color: #86efac; border-color: #166534; background: rgba(22,  101, 52,  0.25); }
+.badge-loss    { color: #fca5a5; border-color: #7f1d1d; background: rgba(127, 29,  29,  0.25); }
+.badge-neutral { color: #d1d5db; border-color: #374151; background: rgba(55,  65,  81,  0.25); }
+
+/* ─── Chest Numeral Label ────────────────────────────────── */
+
+.chest-numeral {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+}
+
+/* ─── Pulsing Label ──────────────────────────────────────── */
+
+@keyframes label-pulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 0.85; }
+}
+
+.label-pulse {
+  animation: label-pulse 2s ease-in-out infinite;
+}
+
+/* ─── Gold Shimmer (Game Over title) ─────────────────────── */
+
+@keyframes shimmer {
+  0%   { text-shadow: 0 0  8px #ffd700, 0 0 18px #ffaa00; }
+  50%  { text-shadow: 0 0 16px #ffe040, 0 0 36px #ffcc00, 0 0 60px #ff9900; }
+  100% { text-shadow: 0 0  8px #ffd700, 0 0 18px #ffaa00; }
+}
+
+.shimmer-gold {
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+
+/* ─── Pixel Button ───────────────────────────────────────── */
+
+.pixel-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: #fde68a;
+  background: linear-gradient(180deg, #2e2000 0%, #1a1200 100%);
+  border: 2px solid #8b6a14;
+  padding: 14px 36px;
+  cursor: pointer;
+  box-shadow: 0 5px 0 0 #5a4200, 0 0 24px rgba(255, 175, 0, 0.18);
+  transition: color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.pixel-btn:hover {
+  color: #ffd700;
+  background: linear-gradient(180deg, #3d2c00 0%, #2a1f00 100%);
+  box-shadow: 0 5px 0 0 #5a4200, 0 0 36px rgba(255, 180, 0, 0.32);
+  text-shadow: 0 0 10px #ffd700;
+}
+
+.pixel-btn:active {
+  transform: translateY(5px);
+  box-shadow: 0 0 0 0 #5a4200, 0 0 20px rgba(255, 175, 0, 0.18);
+}

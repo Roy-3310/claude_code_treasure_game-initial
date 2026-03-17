@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"C:\\\\Users\\\\USER\\\\Desktop\\\\claude_code_project_demo\\\\claude_code_treasure_game-initial\\\\claude_code_treasure_game-initial\" && npm run build 2>&1)",
+      "Bash(cd:*)",
+      "Bash(powershell -Command \"Stop-Process -Id 8428 -Force\")",
+      "Bash(netstat:*)",
+      "Bash(powershell -Command \"Get-Process -Name node -ErrorAction SilentlyContinue | Stop-Process -Force; Write-Host 'Done'\")",
+      "Bash(vercel whoami:*)",
+      "Bash(vercel login:*)",
+      "mcp__ide__getDiagnostics"
+    ]
+  }
+}
